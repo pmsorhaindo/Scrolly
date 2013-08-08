@@ -6,7 +6,8 @@ define(function (require, exports, module) {
  // Load dependent modules
     var ElementView                = require("ElementView"),
         RenderList                 = require("RenderList"),
-        Renderer                   = require("Renderer");
+        Renderer                   = require("Renderer")
+        AnimationLoop              = require("AnimationLoop");
 
 var canvas=document.getElementById('myCanvas');
 
@@ -25,8 +26,8 @@ ctx.fillRect(0,0,500,900);
 
 console.log("Yo!");
 
-
-
+var a = new AnimationLoop();
+a.start();
 
 var renderer = new Renderer();
 
