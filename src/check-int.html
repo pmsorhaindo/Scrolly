@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+
+	<input type="text" value="" id="text"/>
+	<input type="button" value="Press Me" onclick="checkInt();"/>
+	<script type="text/javascript">
+		var num = "";
+
+		function checkInt(){
+
+			num = document.getElementById("text").value;
+			console.log(num);
+			var type = typeof(num);
+			console.log(type);
+
+			switch(type){
+				case "number":
+				//do something
+				console.log(num);
+				console.log(typeof(num));
+				break;
+				case "string":
+				//do something
+				convertStringToNum();
+				break;
+				//default:
+				//console.log("Neither a string nor a number");
+			}
+		}
+
+		function convertStringToNum(){
+
+			var patt = /\d+(\.{1}\d{9})?$/;
+			var bool = patt.test(num);
+			console.log(bool);
+
+			if(bool == true){
+				num = parseFloat(num,10);
+				console.log(num);
+				console.log(typeof(num));
+			}
+			else{
+				console.log(num);
+				console.log("Fail");
+			}
+
+		}
+
+
+
+	</script>
+
+</body>
+</html>
