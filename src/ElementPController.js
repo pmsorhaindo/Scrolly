@@ -1,12 +1,13 @@
 /**
- * ElementController
+ * ElementPController
  *
- * Handles the model and controller aspects of each element.
+ * Element Physics Controller a controller with extentions for physics
+ * Extends ElementController.
  */
 
-define(function() {
+define(["ElementController"]function() {
 
-function ElementController(newId) {
+function ElementPController(newId) {
 
     // ************************************************************************ 
 	// PRIVATE VARIABLES AND FUNCTIONS 
@@ -50,5 +51,5 @@ function ElementController(newId) {
     };
 }
 
-return ElementController;
+return ElementPController;
 });
