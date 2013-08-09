@@ -22,7 +22,7 @@ function RenderList(newId) {
 
         this.push = function(objElementView) {
                 this.arrRenderList.push(objElementView);
-                console.log("Is ellie still alive "+objElementView.getX());
+                console.log("Is ellie still alive " + objElementView.getController().getX());
         }
 
         this.pop = function() {

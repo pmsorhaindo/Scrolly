@@ -4,7 +4,8 @@ define(function (require, exports, module) {
 
 
  // Load dependent modules
-    var ElementView                = require("ElementView"),
+    var ElementController          = require("ElementController"),
+        ElementView                = require("ElementView"),
         RenderList                 = require("RenderList"),
         Renderer                   = require("Renderer")
         AnimationLoop              = require("AnimationLoop");
@@ -37,10 +38,12 @@ var renderList = new RenderList("firstRenderList");
 
 console.log("render list created");
 
-var ellie = new ElementView("Ellie");
+var elliesController = new ElementController("x");
+var ellie = new ElementView("Ellie",elliesController);
+
 
 console.log("Ellie created");
-console.log("Ellie's ex is " + ellie.getX());
+console.log("Ellie's ex is " + ellie.getController().getX());
 
 renderList.push(ellie);
 

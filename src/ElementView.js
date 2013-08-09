@@ -8,57 +8,49 @@ define(function() {
 
 function ElementView(newId) {
 
-        // ************************************************************************ 
-	// PRIVATE VARIABLES AND FUNCTIONS 
-	// ONLY PRIVELEGED METHODS MAY VIEW/EDIT/INVOKE 
-	// *********************************************************************** 
+        // ID for the element view
+	this.strId = newId ? newId : "untitled";
+        this.controller = null;
+}
+
+function ElementView(newId,newController) {
 
         // ID for the element view
-	var strId = newId ? newId : "untitled";
-
-        var intX = 10, intY = 10, intWidth, intHeight;
-        var blVisible = true;
-
-        // ************************************************************************ 
-	// PRIVILEGED METHODS 
- 	// MAY BE INVOKED PUBLICLY AND MAY ACCESS PRIVATE ITEMS 
-	// MAY NOT BE CHANGED; MAY BE REPLACED WITH PUBLIC FLAVORS 
-	// ************************************************************************ 
-	this.toString = this.getId=function(){
-                return strId
-        };
-
-	this.draw = function(objContext){ 
-                console.log("drawing with context "+objContext);                
-                if(objContext && blVisible == true)
-                {
-                        console.log("drawing the element view called "+strId);
-		        objContext.fillStyle='#FF00F6';
-                        objContext.fillRect(intX,intX,30,30);
-                }
-	};
-        
-        this.setX = function(){
-                intX = x;
-	};
-        
-        this.setY = function(){ 
-                intY = y;
-	};
-        this.getX = function(){
-                return intX;
-	};
-        
-        this.getY = function(){ 
-                return intY;
-	};
-        this.isVisible = function(){
-                return blVisible;
-        }
-        this.setVisible =function(){
-                blVisible = !blVisible;
-        }
+        this.strId = newId ? newId : "untitled";
+        this.controller = newController;
 }
+
+ElementView.prototype.toString = ElementView.prototype.getId=function(){
+        return strId
+};
+
+ElementView.prototype.draw = function(objContext){
+
+        if(this.controller == null)
+        {
+                console.log("no controller assigned to view");
+                return;
+        }
+
+        console.log("drawing with context "+objContext);                
+        if(objContext && this.controller.isVisible() == true)
+        {
+                console.log("drawing the element view called " + this.strId + " " + this.controller.getX());
+                objContext.fillStyle='#FF00F6';
+                objContext.fillRect(this.controller.getX(),
+                                    this.controller.getX(),
+                                    30,
+                                    30);
+        }
+};
+
+ElementView.prototype.setController = function(x){
+        this.controller = x;
+};
+
+ElementView.prototype.getController = function(){
+        return this.controller;
+};
 
 return ElementView;
 
