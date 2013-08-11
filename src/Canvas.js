@@ -5,6 +5,7 @@ define(function (require, exports, module) {
 
  // Load dependent modules
     var ElementController          = require("ElementController"),
+        ElementPController         = require("ElementPController"),
         ElementView                = require("ElementView"),
         RenderList                 = require("RenderList"),
         Renderer                   = require("Renderer")
@@ -29,6 +30,9 @@ console.log("Yo!");
 
 var a = new AnimationLoop();
 a.start();
+
+var x = new ElementPController();
+console.log("can has inheritance? "+ x.getX());
 
 var renderer = new Renderer();
 

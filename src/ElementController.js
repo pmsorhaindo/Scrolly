@@ -16,8 +16,11 @@ function ElementController(newId) {
         // ID for the element view
 	var strId = newId ? newId : "untitled";
 
-        var intX = 10, intY = 10, intWidth, intHeight;
-        var blVisible = true;
+    this.intX;
+    this.intY;
+    this.intWidth;
+    this.intHeight;
+    this.blVisible = false;
 
     // ************************************************************************ 
 	// PRIVILEGED METHODS 
@@ -28,27 +31,54 @@ function ElementController(newId) {
         return strId
     };
         
-    this.setX = function(){
-        intX = x;
+    this.setX = function(val){
+        this.intX = val;
 	};
         
-    this.setY = function(){ 
-        intY = y;
+    this.setY = function(val){ 
+        this.intY = val;
 	};
     this.getX = function(){
-        return intX;
+        return this.intX;
 	};
         
     this.getY = function(){ 
-		return intY;
+		return this.intY;
 	};
+    
+    this.setWidth = function(val){
+        this.intWidth = val;
+    };
+        
+    this.setHeight = function(val){
+        // TODO some error checking
+        this.intHeight = val;
+    };
+    this.getWidth = function(){
+        return this.intWidth;
+    };
+        
+    this.getHeight = function(){ 
+        return this.intHeight;
+    };
+
     this.isVisible = function(){
-            return blVisible;
+            return this.blVisible;
     };
     this.setVisible =function(){
-        blVisible = !blVisible;
+        this.blVisible = !this.blVisible;
     };
+
+    this.init();
 }
+
+ElementController.prototype.init = function() {
+
+    this.setX = 10;
+    this.setY = 10;
+    this.setVisible();
+
+};
 
 return ElementController;
 });

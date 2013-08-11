@@ -5,7 +5,7 @@
  * Extends ElementController.
  */
 
-define(["ElementController"]function() {
+define(["ElementController","Inheritance"],function(ElementController,Inheritance) {
 
 function ElementPController(newId) {
 
@@ -14,42 +14,15 @@ function ElementPController(newId) {
 	// ONLY PRIVELEGED METHODS MAY VIEW/EDIT/INVOKE 
 	// *********************************************************************** 
 
-        // ID for the element view
-	var strId = newId ? newId : "untitled";
-
-        var intX = 10, intY = 10, intWidth, intHeight;
-        var blVisible = true;
-
-    // ************************************************************************ 
-	// PRIVILEGED METHODS 
- 	// MAY BE INVOKED PUBLICLY AND MAY ACCESS PRIVATE ITEMS 
-	// MAY NOT BE CHANGED; MAY BE REPLACED WITH PUBLIC FLAVORS 
-	// ************************************************************************ 
-	this.toString = this.getId=function(){
-        return strId
-    };
-        
-    this.setX = function(){
-        intX = x;
-	};
-        
-    this.setY = function(){ 
-        intY = y;
-	};
-    this.getX = function(){
-        return intX;
-	};
-        
-    this.getY = function(){ 
-		return intY;
-	};
-    this.isVisible = function(){
-            return blVisible;
-    };
-    this.setVisible =function(){
-        blVisible = !blVisible;
-    };
+    this.init();
 }
+ElementPController.inherits(ElementController);
+
+ElementPController.prototype.init = function(){
+    this.setX = 1001;
+    this.setY = 1001;
+    this.setVisible();
+};
 
 return ElementPController;
 });

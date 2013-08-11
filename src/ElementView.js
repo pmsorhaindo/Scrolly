@@ -38,9 +38,9 @@ ElementView.prototype.draw = function(objContext){
         console.log("drawing the element view called " + this.strId + " " + this.controller.getX());
         objContext.fillStyle='#FF00F6';
         objContext.fillRect(this.controller.getX(),
-                            this.controller.getX(),
-                            30,
-                            30);
+                            this.controller.getY(),
+                            this.controller.getWidth(),
+                            this.controller.getHeight());
     }
 };
 
