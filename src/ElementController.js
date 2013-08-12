@@ -36,7 +36,9 @@ ElementController.prototype.init = function() {
     this.setY(10);
     this.setWidth(30);
     this.setHeight(30);
-    this.setVisible();
+
+    // As init functions are run twice (due to inheritance) can't be sure of the value of blVisible so set explicitly.
+    this.setVisible(true);
 
 };
 
@@ -78,8 +80,15 @@ ElementController.prototype.getHeight = function(){
 ElementController.prototype.isVisible = function(){
         return this.blVisible;
 };
-ElementController.prototype.setVisible =function(){
-    this.blVisible = !this.blVisible;
+ElementController.prototype.setVisible =function(blVal){
+    if(blVal == null)
+    {
+        this.blVisible = !this.blVisible;
+    }
+    else if (blVal === true || blVal === false)
+    {
+        this.blVisible = blVal;
+    }
 };
 
 

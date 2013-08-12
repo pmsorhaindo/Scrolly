@@ -32,10 +32,8 @@ ElementView.prototype.draw = function(objContext){
         return;
     }
 
-    console.log("drawing with context "+objContext);                
     if(objContext && this.controller.isVisible() == true)
     {
-        console.log("drawing the element view called " + this.strId + " " + this.controller.getX());
         objContext.fillStyle='#FF00F6';
         objContext.fillRect(this.controller.getX(),
                             this.controller.getY(),

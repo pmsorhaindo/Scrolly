@@ -38,9 +38,12 @@ ElementPController.inherits(ElementController);
 
 ElementPController.prototype.init = function(){
     
-    this.setX(1001);
-    this.setY(1001);
-    this.setVisible();
+    this.setX(40);
+    this.setY(40);
+    this.setWidth(120);
+    this.setHeight(30);
+    this.setVisible(true);
+
 };
 
 ElementPController.prototype.updateBounds = function(){    

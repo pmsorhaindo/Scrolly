@@ -117,37 +117,3 @@ AnimationLoop.prototype.run = function () {
 return AnimationLoop;
 
 });
-
-/*
-var isAnimating = false;    // Is animation on or off?
-var animateRunning = false; // Are we in the animation loop?
-var requiresRedraw = true;  // Do the static elements need to be redrawn?
- 
-function startAnimating() { // Start animating/drawing
-    isAnimating = true;
-    if (!animateRunning) Draw(); // Only draw if we are not already drawing
-}
-function stopAnimating() {  //t Stop animating/drawing
-    isAnimating = false;
-}
- 
-function draw() {
-    if (isAnimating) { // Only draw if we are drawing
-        animateRunning = true;
-        try {
-            if (requiresRedraw) {
-                requiresRedraw = false;
-                renderStatic(); // function defined elsewhere
-                                // which draws static elements
-            }
-            renderAnim(); // function defined elsewhere
-                          // which draws animated elements
-        } catch (e) {
-            if (window.console && window.console.log)
-                window.console.log(e); // for debugging
-        }
-        requestAnimationFrame(Draw);
-        animateRunning = false;
-    }
-}
-*/

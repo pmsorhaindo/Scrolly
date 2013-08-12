@@ -8,7 +8,9 @@ define(function (require, exports, module) {
         ElementPController         = require("ElementPController"),
         ElementView                = require("ElementView"),
         RenderList                 = require("RenderList"),
-        Renderer                   = require("Renderer")
+        PhysicsList                = require("PhysicsList"),
+        PhysicsEngine              = require("PhysicsEngine"),
+        Renderer                   = require("Renderer"),
         AnimationLoop              = require("AnimationLoop");
 
 var canvas=document.getElementById('myCanvas');
@@ -18,18 +20,19 @@ canvas.style.height = "500px";
 canvas.style.width = "900px";
 
 
-var x = new ElementPController();
-console.log("can has inheritance? "+ x.getX());
-
 var renderer = new Renderer();
 
-console.log("renderer created");
+var engine = new PhysicsEngine();
+
+console.log("renderer and engine created");
 
 var renderList = new RenderList("firstRenderList");
 
-console.log("render list created");
+var physicsList = new PhysicsList("firstPhysicsList");
 
-var elliesController = new ElementController("x");
+console.log("render and physics lists created");
+
+var elliesController = new ElementPController("x");
 var ellie = new ElementView("Ellie",elliesController);
 
 var a = new AnimationLoop();
@@ -37,23 +40,23 @@ a.start(renderer);
 
 
 console.log("Ellie created");
-console.log("Ellie's ex is " + ellie.getController().getX());
 
 renderList.push(ellie);
+physicsList.push(elliesController);
 
-console.log("Ellie pushed onto render list");
+console.log("Ellie and her controller pushed onto render and physics lists respectively");
 
 renderer.addList(renderList);
+engine.addList(physicsList);
 
-console.log("render list given to renderer");
+console.log("render and engine given lists to process");
 
-console.log("rendering...");
+console.log("computing...");
 
 renderer.render();
+engine.tick();
 
 console.log("done");
 
-var animLoop = new AnimationLoop(renderer);
-animLoop.start();
 //End of require.js function parameter
 });

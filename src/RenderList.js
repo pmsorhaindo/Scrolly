@@ -21,7 +21,6 @@ function RenderList(newId) {
 
         this.push = function(objElementView) {
                 this.arrRenderList.push(objElementView);
-                console.log("Is ellie still alive " + objElementView.getController().getX());
         }
 
         this.pop = function() {
@@ -34,7 +33,6 @@ function RenderList(newId) {
 
 RenderList.prototype.process = function(objContext) {
         for (var i = 0; i<this.arrRenderList.length; i++) {
-                console.log("drawing item in render list")
                 this.arrRenderList[i].draw(objContext);
         }
 }
