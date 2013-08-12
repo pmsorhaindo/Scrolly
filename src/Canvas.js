@@ -18,19 +18,6 @@ canvas.style.height = "500px";
 canvas.style.width = "900px";
 
 
-var ctx = canvas.getContext('2d');
-
-console.log("ctx = ",ctx);
-
-ctx.fillStyle='#000000';
-ctx.fillRect(0,0,500,900);
-
-
-console.log("Yo!");
-
-var a = new AnimationLoop();
-a.start();
-
 var x = new ElementPController();
 console.log("can has inheritance? "+ x.getX());
 
@@ -44,6 +31,9 @@ console.log("render list created");
 
 var elliesController = new ElementController("x");
 var ellie = new ElementView("Ellie",elliesController);
+
+var a = new AnimationLoop();
+a.start(renderer);
 
 
 console.log("Ellie created");
@@ -63,5 +53,7 @@ renderer.render();
 
 console.log("done");
 
+var animLoop = new AnimationLoop(renderer);
+animLoop.start();
 //End of require.js function parameter
 });
