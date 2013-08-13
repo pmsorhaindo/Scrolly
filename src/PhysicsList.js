@@ -15,23 +15,29 @@ function PhysicsList(newId) {
 	// ONLY PRIVELEGED METHODS MAY VIEW/EDIT/INVOKE 
 	// *********************************************************************** 
 
-        // ID for the element view
+    // ID for the element view
 	var id = newId ? newId : "untitled";
 
-        this.arrProcessList = new Array();
+    this.arrProcessList = new Array();
 
-        this.push = function(objElementPController) {
-                this.arrProcessList.push(objElementPController);
-        }
-
-        this.pop = function() {
-                return this.arrProcessList.pop();
-        }
-        this.toString = function() {
-                return this.arrProcessList.toString();
-        }
 }
 
+
+PhysicsList.prototype.push = function(objElementPController) {
+    this.arrProcessList.push(objElementPController);
+}
+
+PhysicsList.prototype.pop = function() {
+    return this.arrProcessList.pop();
+}
+
+PhysicsList.prototype.length = function() {
+    return this.arrProcessList.length;
+}
+
+PhysicsList.prototype.toString = function() {
+    return this.arrProcessList.toString();
+}
 
 return PhysicsList;
 

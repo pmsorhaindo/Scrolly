@@ -23,11 +23,15 @@ function ElementPController(newId) {
 
     // Velocity
     this.vx = 0;
-    this.vy = 0;
+    this.vy = -2;
 
     // Acceleration
     this.ax = 0;
     this.ay = 0;
+
+    this.flMass = 1.0;
+    this.flForces = new Array();
+
 
 
     this.init();

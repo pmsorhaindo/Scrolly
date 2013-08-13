@@ -36,6 +36,7 @@ var elliesController = new ElementPController("x");
 var ellie = new ElementView("Ellie",elliesController);
 
 var a = new AnimationLoop();
+a.setPhysicsEngine(engine);
 a.start(renderer);
 
 
@@ -48,15 +49,6 @@ console.log("Ellie and her controller pushed onto render and physics lists respe
 
 renderer.addList(renderList);
 engine.addList(physicsList);
-
-console.log("render and engine given lists to process");
-
-console.log("computing...");
-
-renderer.render();
-engine.tick();
-
-console.log("done");
 
 //End of require.js function parameter
 });

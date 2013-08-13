@@ -35,6 +35,7 @@ var AnimationLoop = function (objRenderer) {
     this.animateRunning = false; // Are we in the animation loop?
     this.requiresRedraw = true;  // Do the static elements need to be redrawn?
     this.renderer = null; // the renderer object to run in the animation loop
+    this.engine = null; // the physics object to move things in the world (moved here due to )
 
     if(objRenderer != null)
     {
@@ -76,6 +77,10 @@ AnimationLoop.prototype.setRenderer = function (objRenderer) {
     this.renderer = objRenderer;
 }
 
+AnimationLoop.prototype.setPhysicsEngine = function(objPhysicsEngine) {
+    this.engine = objPhysicsEngine;
+};
+
 AnimationLoop.prototype.run = function () {
     if (this.isAnimating) { // Only draw if we are drawing
         this.animateRunning = true;
@@ -103,7 +108,10 @@ AnimationLoop.prototype.run = function () {
             this.ctx.fillRect(50-this.i,40+this.i,50,50);
             this.i++;*/
             this.renderer.render();
-
+            if(this.engine)
+            {
+                this.engine.tick();
+            }
 
         } catch (e) {
             if (window.console && window.console.log)
