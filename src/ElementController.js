@@ -6,7 +6,7 @@
 
 define(function() {
 
-function ElementController(newId) {
+function ElementController(newId,objElementSetup) {
 
     // ************************************************************************ 
 	// PRIVATE VARIABLES AND FUNCTIONS 
@@ -27,18 +27,33 @@ function ElementController(newId) {
  	// MAY BE INVOKED PUBLICLY AND MAY ACCESS PRIVATE ITEMS 
 	// MAY NOT BE CHANGED; MAY BE REPLACED WITH PUBLIC FLAVORS 
 	// ************************************************************************ 
-    this.init();
+    this.init(objElementSetup);
 }
 
-ElementController.prototype.init = function() {
+ElementController.prototype.init = function(objElementSetup) {
 
-    this.setX(10);
-    this.setY(10);
-    this.setWidth(30);
+
+    
+    if(objElementSetup)
+    {
+    this.setX(objElementSetup.x);
+    this.setY(objElementSetup.y);
+    this.setWidth(objElementSetup.width);
+    this.setHeight(objElementSetup.height);
+    this.setVisible(objElementSetup.visible);
+    }
+    else
+    {
+    console.log("fall through in ElementController")
+    this.setX(30);
+    this.setY(50);
+    this.setWidth(20);
     this.setHeight(30);
-
+    
     // As init functions are run twice (due to inheritance) can't be sure of the value of blVisible so set explicitly.
     this.setVisible(true);
+    }
+
 
 };
 

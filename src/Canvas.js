@@ -32,8 +32,27 @@ var physicsList = new PhysicsList("firstPhysicsList");
 
 console.log("render and physics lists created");
 
-var elliesController = new ElementPController("x");
+var elliesControllerSettings = {
+	x:50,
+	y:30,
+	width:20,
+	height:20,
+	mass:1.2,
+	visible:true
+}
+var elliesController = new ElementPController("ellieController",elliesControllerSettings);
 var ellie = new ElementView("Ellie",elliesController);
+
+var elliotsControllerSettings = {
+	x:100,
+	y:30,
+	width:20,
+	height:20,
+	mass:1,
+	visible:true
+}
+var elliotsController = new ElementPController("elliotController",elliotsControllerSettings);
+var elliot = new ElementView("Elliot",elliotsController);
 
 var a = new AnimationLoop();
 a.setPhysicsEngine(engine);
@@ -44,6 +63,10 @@ console.log("Ellie created");
 
 renderList.push(ellie);
 physicsList.push(elliesController);
+
+renderList.push(elliot);
+physicsList.push(elliotsController);
+
 
 console.log("Ellie and her controller pushed onto render and physics lists respectively");
 

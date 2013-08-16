@@ -7,7 +7,7 @@
 
 define(["ElementController","Inheritance"],function(ElementController,Inheritance) {
 
-function ElementPController(newId) {
+function ElementPController(newId,objPhysicsElementSetup) {
 
     // ************************************************************************ 
 	// PRIVATE VARIABLES AND FUNCTIONS 
@@ -34,19 +34,32 @@ function ElementPController(newId) {
 
 
 
-    this.init();
+    this.init(objPhysicsElementSetup);
     this.updateBounds();
 }
 
 ElementPController.inherits(ElementController);
 
-ElementPController.prototype.init = function(){
+ElementPController.prototype.init = function(objPhysicsElementSetup){
     
-    this.setX(40);
-    this.setY(40);
-    this.setWidth(120);
+    if(objPhysicsElementSetup)
+    {
+    this.setX(objPhysicsElementSetup.x);
+    this.setY(objPhysicsElementSetup.y);
+    this.setWidth(objPhysicsElementSetup.width);
+    this.setHeight(objPhysicsElementSetup.height);
+    this.setVisible(objPhysicsElementSetup.visible);
+    this.setMass(objPhysicsElementSetup.mass);
+    }
+    else
+    {
+    console.log("fall through in ElementPController!!")
+    this.setX(30);
+    this.setY(50);
+    this.setWidth(20);
     this.setHeight(30);
     this.setVisible(true);
+    }
 
 };
 
@@ -65,7 +78,6 @@ ElementPController.prototype.getMidY = function(){
         return this.flHalfHeight + this.getY();
 };
 
-
 // Getters for the top, left, right, and bottom of the bounding box rectangle
 ElementPController.prototype.getTop = function() {
     return this.getY();
@@ -78,6 +90,14 @@ ElementPController.prototype.getRight = function() {
 };
 ElementPController.prototype.getBottom = function() {
     return this.getY() + this.getHeight();
+};
+
+ElementPController.prototype.getMass = function(){    
+    return this.flMass;
+};
+
+ElementPController.prototype.setMass = function(val){    
+    this.flMass = val;
 };
 
 return ElementPController;

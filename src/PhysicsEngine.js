@@ -29,7 +29,7 @@ PhysicsEngine.prototype.tick = function() {
 };
 
 PhysicsEngine.prototype.applyGravity = function(physicsElement) {
-	physicsElement.setY(physicsElement.getY()+0.5);
+	physicsElement.setY(physicsElement.getY()+0.5*physicsElement.getMass());
 }
 
 return PhysicsEngine;
