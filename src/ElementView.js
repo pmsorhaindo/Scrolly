@@ -34,7 +34,7 @@ ElementView.prototype.draw = function(objContext){
 
     if(objContext && this.controller.isVisible() == true)
     {
-        objContext.fillStyle='#FF00F6';
+        objContext.fillStyle = this.controller.getColour();
         objContext.fillRect(this.controller.getX(),
                             this.controller.getY(),
                             this.controller.getWidth(),

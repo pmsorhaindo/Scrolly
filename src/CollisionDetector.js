@@ -36,4 +36,6 @@ CollisionDetector.prototype.collideRect =
     return true;
 };
 
+return CollisionDetector;
+
 });

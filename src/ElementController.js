@@ -14,12 +14,13 @@ function ElementController(newId,objElementSetup) {
 	// *********************************************************************** 
 
         // ID for the element view
-	var strId = newId ? newId : "untitled";
+	this.strId = newId ? newId : "untitled";
 
     this.flX;
     this.flY;
     this.flWidth;
     this.flHeight;
+    this.strColourHex = "#FF00F6"
     this.blVisible = false;
 
     // ************************************************************************ 
@@ -32,34 +33,27 @@ function ElementController(newId,objElementSetup) {
 
 ElementController.prototype.init = function(objElementSetup) {
 
-
-    
     if(objElementSetup)
     {
-    this.setX(objElementSetup.x);
-    this.setY(objElementSetup.y);
-    this.setWidth(objElementSetup.width);
-    this.setHeight(objElementSetup.height);
-    this.setVisible(objElementSetup.visible);
+        this.setX(objElementSetup.x);
+        this.setY(objElementSetup.y);
+        this.setWidth(objElementSetup.width);
+        this.setHeight(objElementSetup.height);
+        this.setVisible(objElementSetup.visible);
     }
     else
     {
-    console.log("fall through in ElementController")
-    this.setX(30);
-    this.setY(50);
-    this.setWidth(20);
-    this.setHeight(30);
-    
-    // As init functions are run twice (due to inheritance) can't be sure of the value of blVisible so set explicitly.
-    this.setVisible(true);
+        console.log("Init ElementPController called without parameters!");
     }
 
 
 };
 
-ElementController.prototype.toString = ElementController.prototype.getId = function(){
-    return strId
+ElementController.prototype.getId = function(){
+    return this.strId
 };
+
+ElementController.prototype.toString = ElementController.prototype.getId;
     
 ElementController.prototype.setX = function(val){
     this.flX = val;
@@ -95,6 +89,7 @@ ElementController.prototype.getHeight = function(){
 ElementController.prototype.isVisible = function(){
         return this.blVisible;
 };
+
 ElementController.prototype.setVisible =function(blVal){
     if(blVal == null)
     {
@@ -106,6 +101,13 @@ ElementController.prototype.setVisible =function(blVal){
     }
 };
 
+ElementController.prototype.getColour = function(){
+        return this.strColourHex;
+};
+
+ElementController.prototype.setColour = function(val){
+        this.strColourHex = val;
+};
 
 return ElementController;
 });

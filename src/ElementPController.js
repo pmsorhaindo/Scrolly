@@ -17,6 +17,8 @@ function ElementPController(newId,objPhysicsElementSetup) {
     //Call Parent Constructor
     this.parent.constructor.call(this,newId);
 
+    this.strId = newId ? newId : "untitled";
+
     // Pre calculated for faster calculations (remember to update these values on changing x or y)
     this.flHalfWidth;
     this.flHalfHeight;
@@ -49,16 +51,12 @@ ElementPController.prototype.init = function(objPhysicsElementSetup){
     this.setWidth(objPhysicsElementSetup.width);
     this.setHeight(objPhysicsElementSetup.height);
     this.setVisible(objPhysicsElementSetup.visible);
+    this.setColour(objPhysicsElementSetup.colour);
     this.setMass(objPhysicsElementSetup.mass);
     }
     else
     {
-    console.log("fall through in ElementPController!!")
-    this.setX(30);
-    this.setY(50);
-    this.setWidth(20);
-    this.setHeight(30);
-    this.setVisible(true);
+    console.log("Init ElementPController called without parameters!")
     }
 
 };

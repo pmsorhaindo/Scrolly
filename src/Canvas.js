@@ -11,7 +11,8 @@ define(function (require, exports, module) {
         PhysicsList                = require("PhysicsList"),
         PhysicsEngine              = require("PhysicsEngine"),
         Renderer                   = require("Renderer"),
-        AnimationLoop              = require("AnimationLoop");
+        AnimationLoop              = require("AnimationLoop"),
+        CollisionDetector          = require("CollisionDetector");
 
 var canvas=document.getElementById('myCanvas');
 
@@ -32,13 +33,28 @@ var physicsList = new PhysicsList("firstPhysicsList");
 
 console.log("render and physics lists created");
 
+
+var floorsControllerSettings = {
+	x:10,
+	y:100,
+	width:260,
+	height:20,
+	mass:0,
+	visible:true,
+	colour:"F0026B"
+}
+var floorsController = new ElementPController("floorController",floorsControllerSettings);
+var floor = new ElementView("Floor",floorsController);
+
+
 var elliesControllerSettings = {
 	x:50,
 	y:30,
 	width:20,
 	height:20,
 	mass:1.2,
-	visible:true
+	visible:true,
+	colour:"CAA0A6"
 }
 var elliesController = new ElementPController("ellieController",elliesControllerSettings);
 var ellie = new ElementView("Ellie",elliesController);
@@ -49,17 +65,22 @@ var elliotsControllerSettings = {
 	width:20,
 	height:20,
 	mass:1,
-	visible:true
+	visible:true,
+	colour:"C20026"
 }
 var elliotsController = new ElementPController("elliotController",elliotsControllerSettings);
 var elliot = new ElementView("Elliot",elliotsController);
+
+console.log("Ellie, Elliot and Floor created");
 
 var a = new AnimationLoop();
 a.setPhysicsEngine(engine);
 a.start(renderer);
 
+console.log("Animation loop initialized and phyics Engine assigned.");
 
-console.log("Ellie created");
+renderList.push(floor);
+physicsList.push(floorsController);
 
 renderList.push(ellie);
 physicsList.push(elliesController);
