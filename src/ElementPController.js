@@ -32,6 +32,7 @@ function ElementPController(newId,objPhysicsElementSetup) {
     this.ay = 0;
 
     this.flMass = 1.0;
+    this.flElasticity = 0.5;
     this.arrForces = new Array();
 
 
@@ -98,6 +99,14 @@ ElementPController.prototype.setMass = function(val){
     this.flMass = val;
 };
 
+ElementPController.prototype.setElasticity = function(val){
+    this.flElasticity = val;
+};
+
+ElementPController.prototype.getElasticity = function(){
+    return this.flElasticity;
+};
+
 ElementPController.prototype.addForce = function(val){
     if(val instanceof Force)
     {
@@ -107,6 +116,15 @@ ElementPController.prototype.addForce = function(val){
 
 ElementPController.prototype.move = function(){
     
+    var resultantForce = this.determineResultantForce();
+    var resultantI = resultantForce.getI();
+    var resultantJ = resultantForce.getJ();
+    //console.log("Y: ", this.getY(), " X: ",this.getX(), " resultantI: ", resultantI, " resutltantJ: ", resultantJ);
+    this.setX(this.getX()+(resultantI*0.03)*this.flMass);
+    this.setY(this.getY()+(resultantJ*0.03)*this.flMass);
+}
+
+ElementPController.prototype.determineResultantForce = function(){
     var resultantI = 0, resultantJ = 0;
 
     // TODO to avoid this calculation each move add a flag to determine whether forces were modified during the tick
@@ -115,11 +133,8 @@ ElementPController.prototype.move = function(){
         resultantI += this.arrForces[i].getI();
         resultantJ += this.arrForces[i].getJ();
     }
-    //console.log("Y: ", this.getY(), " X: ",this.getX(), " resultantI: ", resultantI, " resutltantJ: ", resultantJ);
-    this.setX(this.getX()+(resultantI*0.03)*this.flMass);
-    this.setY(this.getY()+(resultantJ*0.03)*this.flMass);
-}
-
+    return new Force(resultantI,resultantJ, this.getId+":resultantForce")
+};
 
 return ElementPController;
 });
