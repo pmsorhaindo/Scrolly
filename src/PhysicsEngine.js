@@ -6,7 +6,7 @@
  *
  */
 
-define(["CollisionDetector"],function(CollisionDetector) {
+define(["Force","CollisionDetector"],function(Force,CollisionDetector) {
 
 function PhysicsEngine() {
 
@@ -16,6 +16,7 @@ function PhysicsEngine() {
 };
 
 PhysicsEngine.prototype.addList = function (arrPhysicsLayer) {
+	this.applyGravity(arrPhysicsLayer);
 	this.arrPhysicsLayers.push(arrPhysicsLayer);
 };
 
@@ -24,15 +25,21 @@ PhysicsEngine.prototype.tick = function() {
 	{
 		for (var i = 0; i<this.arrPhysicsLayers[h].length(); i++)
 		{
-			this.applyGravity(this.arrPhysicsLayers[h].arrProcessList[i]);
+			(this.arrPhysicsLayers[h].arrProcessList[i]).move();
 		}
 
 		this.testForCollisions(this.arrPhysicsLayers[h]);
 	}
 };
 
-PhysicsEngine.prototype.applyGravity = function(physicsElement) {
-	physicsElement.setY(physicsElement.getY()+(0.5*physicsElement.getMass()));
+PhysicsEngine.prototype.applyGravity = function(arrPhysicsElements) {
+	var gravity = new Force(0,9,"gravity"); 
+	
+	for(var i = 0; i<arrPhysicsElements.arrProcessList.length; i++)
+	{
+		arrPhysicsElements.arrProcessList[i].addForce(gravity);
+		console.log("new force j "+arrPhysicsElements.arrProcessList[i].arrForces[0].getJ());
+	}
 }
 
 PhysicsEngine.prototype.testForCollisions = function(arrPhysicsLayer)
@@ -50,8 +57,6 @@ PhysicsEngine.prototype.testForCollisions = function(arrPhysicsLayer)
 		}
 	}
 }
-
-
 
 return PhysicsEngine;
  });

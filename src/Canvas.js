@@ -13,6 +13,7 @@ define(function (require, exports, module) {
         Renderer                   = require("Renderer"),
         AnimationLoop              = require("AnimationLoop"),
         CollisionDetector          = require("CollisionDetector");
+        
 
 var canvas=document.getElementById('myCanvas');
 
